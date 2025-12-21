@@ -1,0 +1,149 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import InsightCard from '../components/InsightCard.astro';
+import DataCard from '../components/DataCard.astro';
+
+const allInsights = await getCollection('insights');
+const latestInsights = allInsights
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+
+<BaseLayout title="Water Engineering Insights - Technical Resources for Civil Engineers">
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-brand-50 to-white dark:from-neutral-900 dark:to-neutral-800 border-b border-neutral-200 dark:border-neutral-700">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+      <div class="max-w-3xl">
+        <h1 class="text-5xl lg:text-6xl font-bold text-neutral-900 dark:text-neutral-100 leading-tight">
+          Engineering clarity in complex water systems
+        </h1>
+        <p class="mt-6 text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
+          Technical insights, design methodologies, and case studies from the field of hydraulic engineering,
+          stormwater management, and water resources—built for civil engineers who demand precision.
+        </p>
+        <div class="mt-8 flex gap-4">
+          <a
+            href="/insights"
+            class="inline-block px-6 py-3 bg-brand-600 hover:bg-brand-700 text-white font-medium rounded-lg no-underline transition-colors"
+          >
+            Browse Insights
+          </a>
+          <a
+            href="/case-studies"
+            class="inline-block px-6 py-3 bg-white dark:bg-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-700 text-neutral-900 dark:text-neutral-100 font-medium rounded-lg border border-neutral-300 dark:border-neutral-600 no-underline transition-colors"
+          >
+            View Case Studies
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Engineering Metrics -->
+  <section class="py-16 bg-white dark:bg-neutral-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <DataCard
+          title="Years of Field Experience"
+          value="15+"
+          description="Designing and analyzing water infrastructure systems"
+        />
+        <DataCard
+          title="Project Portfolio"
+          value="50+"
+          description="Completed hydraulic studies and stormwater designs"
+          variant="highlight"
+        />
+        <DataCard
+          title="Coverage Area"
+          value="2,500"
+          unit="km²"
+          description="Watershed analysis and modeling experience"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="py-16 border-t border-neutral-200 dark:border-neutral-700">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl font-bold text-neutral-900 dark:text-neutral-100 mb-6">
+          About This Resource
+        </h2>
+        <div class="prose prose-lg dark:prose-invert max-w-none">
+          <p class="text-neutral-700 dark:text-neutral-300 leading-relaxed">
+            Water Engineering Insights is a technical resource center developed by a practicing civil engineer
+            specializing in hydraulic systems, stormwater management, and water resources engineering. This platform
+            documents proven methodologies, analytical techniques, and lessons learned from complex infrastructure projects.
+          </p>
+          <p class="text-neutral-700 dark:text-neutral-300 leading-relaxed mt-4">
+            From HEC-RAS modeling workflows to low-impact development design, each article focuses on practical
+            implementation rather than theoretical abstraction. The goal is to provide fellow engineers with
+            actionable insights that improve design efficiency and project outcomes.
+          </p>
+        </div>
+
+        <div class="mt-8 p-6 bg-neutral-50 dark:bg-neutral-800 rounded-lg border border-neutral-200 dark:border-neutral-700">
+          <h3 class="text-lg font-bold text-neutral-900 dark:text-neutral-100 mb-3">Core Competencies</h3>
+          <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-neutral-700 dark:text-neutral-300">
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 bg-brand-600 rounded-full"></span>
+              Hydraulic & Hydrologic Modeling
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 bg-brand-600 rounded-full"></span>
+              Urban Stormwater System Design
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 bg-brand-600 rounded-full"></span>
+              Flood Risk Assessment & Mitigation
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 bg-brand-600 rounded-full"></span>
+              Green Infrastructure Planning
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 bg-brand-600 rounded-full"></span>
+              Water Quality Analysis
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 bg-brand-600 rounded-full"></span>
+              GIS-Based Watershed Modeling
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Insights -->
+  <section class="py-16 bg-neutral-50 dark:bg-neutral-800/50 border-t border-neutral-200 dark:border-neutral-700">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center mb-8">
+        <h2 class="text-3xl font-bold text-neutral-900 dark:text-neutral-100">
+          Latest Insights
+        </h2>
+        <a
+          href="/insights"
+          class="text-brand-600 dark:text-brand-400 font-medium hover:underline"
+        >
+          View all →
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {latestInsights.map((insight) => (
+          <InsightCard
+            title={insight.data.title}
+            description={insight.data.description}
+            pubDate={insight.data.pubDate}
+            slug={insight.slug}
+            tags={insight.data.tags}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import InsightCard from '../../components/InsightCard.astro';
+
+const allInsights = await getCollection('insights');
+const sortedInsights = allInsights.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<BaseLayout
+  title="Technical Insights - Water Engineering Insights"
+  description="In-depth technical articles on hydraulic modeling, stormwater design, and water resources engineering."
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="max-w-3xl mb-12">
+      <h1 class="text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-neutral-100 mb-6">
+        Technical Insights
+      </h1>
+      <p class="text-xl text-neutral-600 dark:text-neutral-400">
+        Analysis, methodologies, and practical guidance from real-world hydraulic engineering projects.
+        Each article focuses on actionable techniques you can apply to your own designs.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {sortedInsights.map((insight) => (
+        <InsightCard
+          title={insight.data.title}
+          description={insight.data.description}
+          pubDate={insight.data.pubDate}
+          slug={insight.slug}
+          tags={insight.data.tags}
+        />
+      ))}
+    </div>
+
+    {sortedInsights.length === 0 && (
+      <div class="text-center py-12">
+        <p class="text-neutral-600 dark:text-neutral-400">
+          No insights published yet. Check back soon for technical content.
+        </p>
+      </div>
+    )}
+  </div>
+</BaseLayout>

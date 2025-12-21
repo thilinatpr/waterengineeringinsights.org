@@ -1,0 +1,71 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const allCaseStudies = await getCollection('case-studies');
+const sortedCaseStudies = allCaseStudies.sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<BaseLayout
+  title="Case Studies - Water Engineering Insights"
+  description="Detailed engineering case studies from hydraulic infrastructure projects."
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="max-w-3xl mb-12">
+      <h1 class="text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-neutral-100 mb-6">
+        Engineering Case Studies
+      </h1>
+      <p class="text-xl text-neutral-600 dark:text-neutral-400">
+        Comprehensive documentation of water infrastructure projects, including design challenges,
+        analytical methods, and outcomes from real-world implementations.
+      </p>
+    </div>
+
+    {sortedCaseStudies.length === 0 ? (
+      <div class="text-center py-12">
+        <div class="max-w-md mx-auto bg-neutral-50 dark:bg-neutral-800 rounded-lg p-8 border border-neutral-200 dark:border-neutral-700">
+          <h2 class="text-xl font-bold text-neutral-900 dark:text-neutral-100 mb-3">
+            Case Studies Coming Soon
+          </h2>
+          <p class="text-neutral-600 dark:text-neutral-400">
+            Detailed project documentation is currently in preparation. Check back soon for
+            comprehensive case studies featuring hydraulic modeling, stormwater design, and
+            infrastructure analysis.
+          </p>
+        </div>
+      </div>
+    ) : (
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {sortedCaseStudies.map((study) => (
+          <article class="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg overflow-hidden hover:shadow-lg transition-all">
+            <div class="p-6">
+              <div class="text-xs font-medium text-brand-600 dark:text-brand-400 uppercase tracking-wider mb-2">
+                {study.data.engineering_discipline}
+              </div>
+              <h2 class="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-3">
+                <a href={`/case-studies/${study.slug}`} class="hover:text-brand-600 dark:hover:text-brand-400 no-underline">
+                  {study.data.project_name}
+                </a>
+              </h2>
+              <p class="text-neutral-600 dark:text-neutral-400 mb-4">
+                {study.data.description}
+              </p>
+              <div class="flex flex-wrap gap-x-4 gap-y-2 text-sm text-neutral-600 dark:text-neutral-400">
+                <div class="flex items-center gap-1">
+                  <span class="font-medium">Location:</span>
+                  {study.data.location}
+                </div>
+                <div class="flex items-center gap-1">
+                  <span class="font-medium">Client:</span>
+                  {study.data.client}
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    )}
+  </div>
+</BaseLayout>

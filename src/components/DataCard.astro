@@ -1,0 +1,37 @@
+---
+interface Props {
+  title: string;
+  value: string | number;
+  unit?: string;
+  description?: string;
+  variant?: 'default' | 'highlight';
+}
+
+const { title, value, unit, description, variant = 'default' } = Astro.props;
+
+const variantClasses = {
+  default: 'bg-neutral-50 dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700',
+  highlight: 'bg-brand-50 dark:bg-brand-900/20 border-brand-200 dark:border-brand-800',
+};
+---
+
+<div class={`p-6 rounded-lg border ${variantClasses[variant]} transition-all hover:shadow-md`}>
+  <div class="text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-2 uppercase tracking-wider">
+    {title}
+  </div>
+  <div class="flex items-baseline gap-2">
+    <div class="text-3xl font-bold text-neutral-900 dark:text-neutral-100">
+      {value}
+    </div>
+    {unit && (
+      <div class="text-lg text-neutral-600 dark:text-neutral-400">
+        {unit}
+      </div>
+    )}
+  </div>
+  {description && (
+    <div class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+      {description}
+    </div>
+  )}
+</div>

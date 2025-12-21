@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import DataCard from '../components/DataCard.astro';
+---
+
+<BaseLayout
+  title="About - Water Engineering Insights"
+  description="Learn about the expertise and mission behind Water Engineering Insights, a technical resource for civil engineers."
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <h1 class="text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-neutral-100 mb-8">
+      About This Resource
+    </h1>
+
+    <div class="prose prose-lg dark:prose-invert max-w-none mb-12">
+      <p class="text-xl text-neutral-700 dark:text-neutral-300 leading-relaxed">
+        Water Engineering Insights is a technical platform dedicated to advancing the practice of
+        hydraulic engineering through detailed analysis, proven methodologies, and transparent
+        documentation of real-world projects.
+      </p>
+
+      <h2 class="text-3xl font-bold mt-12 mb-6">Engineering Philosophy</h2>
+      <p class="text-neutral-700 dark:text-neutral-300">
+        Every project in water infrastructure presents unique challenges—site constraints, regulatory
+        requirements, budget limitations, and environmental considerations. This resource documents
+        approaches that have proven effective across diverse conditions, with emphasis on:
+      </p>
+      <ul class="text-neutral-700 dark:text-neutral-300">
+        <li>Quantitative analysis over qualitative assumptions</li>
+        <li>Validation through field measurements and monitoring data</li>
+        <li>Transparent documentation of limitations and uncertainties</li>
+        <li>Practical constructability alongside theoretical rigor</li>
+      </ul>
+
+      <h2 class="text-3xl font-bold mt-12 mb-6">Technical Expertise</h2>
+      <p class="text-neutral-700 dark:text-neutral-300">
+        With over 15 years of experience in water resources engineering, my practice focuses on
+        the intersection of computational modeling and field-tested design. Projects have ranged
+        from urban stormwater retrofits to regional watershed studies, consistently emphasizing
+        data-driven decision making and long-term performance.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+      <DataCard
+        title="Professional Experience"
+        value="15+"
+        unit="years"
+        description="Hydraulic engineering and water resources"
+      />
+      <DataCard
+        title="Modeling Tools"
+        value="HEC-RAS, SWMM, GIS"
+        description="Primary analytical platforms"
+      />
+      <DataCard
+        title="Project Scale"
+        value="50+"
+        description="Completed hydraulic studies and designs"
+      />
+      <DataCard
+        title="Watershed Area"
+        value="2,500"
+        unit="km²"
+        description="Cumulative analysis coverage"
+        variant="highlight"
+      />
+    </div>
+
+    <div class="bg-neutral-50 dark:bg-neutral-800 rounded-lg p-8 border border-neutral-200 dark:border-neutral-700">
+      <h2 class="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-4">
+        Areas of Focus
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <h3 class="text-lg font-bold text-neutral-900 dark:text-neutral-100 mb-2">
+            Hydraulic Modeling
+          </h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">
+            1D/2D model development, calibration, and validation for riverine and urban systems
+          </p>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-neutral-900 dark:text-neutral-100 mb-2">
+            Stormwater Management
+          </h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">
+            Green infrastructure design, detention basin sizing, and conveyance system analysis
+          </p>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-neutral-900 dark:text-neutral-100 mb-2">
+            Flood Risk Assessment
+          </h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">
+            Floodplain mapping, dam breach analysis, and climate-adjusted hazard evaluation
+          </p>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-neutral-900 dark:text-neutral-100 mb-2">
+            Water Quality
+          </h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">
+            Treatment system design, pollutant load modeling, and best management practice selection
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 pt-8 border-t border-neutral-200 dark:border-neutral-700">
+      <h2 class="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-4">
+        Contact & Collaboration
+      </h2>
+      <p class="text-neutral-700 dark:text-neutral-300">
+        This platform is maintained as a resource for the engineering community. If you have questions
+        about specific content or would like to discuss technical approaches, feel free to reach out
+        through professional networks or leave comments on individual articles.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

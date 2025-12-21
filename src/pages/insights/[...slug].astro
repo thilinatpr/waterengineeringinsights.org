@@ -1,0 +1,85 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const insights = await getCollection('insights');
+  return insights.map((insight) => ({
+    params: { slug: insight.slug },
+    props: { insight },
+  }));
+}
+
+interface Props {
+  insight: CollectionEntry<'insights'>;
+}
+
+const { insight } = Astro.props;
+const { Content } = await insight.render();
+
+const formattedDate = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}).format(insight.data.pubDate);
+---
+
+<BaseLayout title={`${insight.data.title} - Water Engineering Insights`} description={insight.data.description}>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <header class="mb-12">
+      <div class="mb-4">
+        <a
+          href="/insights"
+          class="text-sm font-medium text-brand-600 dark:text-brand-400 hover:underline"
+        >
+          ← Back to Insights
+        </a>
+      </div>
+      <h1 class="text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-neutral-100 mb-6 leading-tight">
+        {insight.data.title}
+      </h1>
+      <div class="flex items-center gap-4 text-sm text-neutral-600 dark:text-neutral-400">
+        <time datetime={insight.data.pubDate.toISOString()}>{formattedDate}</time>
+        <span>•</span>
+        <span>{insight.data.author}</span>
+      </div>
+      {insight.data.tags && insight.data.tags.length > 0 && (
+        <div class="mt-4 flex flex-wrap gap-2">
+          {insight.data.tags.map((tag) => (
+            <span class="px-3 py-1 text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 rounded-full">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+    </header>
+
+    <div class="prose prose-lg dark:prose-invert max-w-none
+      prose-headings:font-bold prose-headings:tracking-tight
+      prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
+      prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
+      prose-p:text-neutral-700 dark:prose-p:text-neutral-300 prose-p:leading-relaxed
+      prose-a:text-brand-600 dark:prose-a:text-brand-400 prose-a:no-underline hover:prose-a:underline
+      prose-strong:text-neutral-900 dark:prose-strong:text-neutral-100
+      prose-code:text-brand-600 dark:prose-code:text-brand-400 prose-code:bg-neutral-100 dark:prose-code:bg-neutral-800 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none
+      prose-pre:bg-neutral-900 dark:prose-pre:bg-neutral-950
+      prose-ul:list-disc prose-ol:list-decimal
+      prose-li:text-neutral-700 dark:prose-li:text-neutral-300"
+    >
+      <Content />
+    </div>
+
+    {insight.data.updatedDate && (
+      <footer class="mt-12 pt-8 border-t border-neutral-200 dark:border-neutral-700">
+        <p class="text-sm text-neutral-600 dark:text-neutral-400">
+          Last updated: {new Intl.DateTimeFormat('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          }).format(insight.data.updatedDate)}
+        </p>
+      </footer>
+    )}
+  </article>
+</BaseLayout>
