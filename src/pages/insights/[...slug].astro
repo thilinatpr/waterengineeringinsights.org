@@ -56,16 +56,23 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
     </header>
 
     <div class="prose prose-lg dark:prose-invert max-w-none
-      prose-headings:font-bold prose-headings:tracking-tight
-      prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
-      prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
-      prose-p:text-neutral-700 dark:prose-p:text-neutral-300 prose-p:leading-relaxed
-      prose-a:text-brand-600 dark:prose-a:text-brand-400 prose-a:no-underline hover:prose-a:underline
-      prose-strong:text-neutral-900 dark:prose-strong:text-neutral-100
-      prose-code:text-brand-600 dark:prose-code:text-brand-400 prose-code:bg-neutral-100 dark:prose-code:bg-neutral-800 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none
-      prose-pre:bg-neutral-900 dark:prose-pre:bg-neutral-950
-      prose-ul:list-disc prose-ol:list-decimal
-      prose-li:text-neutral-700 dark:prose-li:text-neutral-300"
+      prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-neutral-900 dark:prose-headings:text-neutral-100
+      prose-h2:text-3xl prose-h2:mt-16 prose-h2:mb-6 prose-h2:leading-tight
+      prose-h3:text-xl prose-h3:mt-10 prose-h3:mb-4 prose-h3:leading-snug
+      prose-p:text-neutral-700 dark:prose-p:text-neutral-300 prose-p:leading-[1.8] prose-p:mb-6 prose-p:text-lg
+      prose-a:text-brand-600 dark:prose-a:text-brand-400 prose-a:no-underline hover:prose-a:underline prose-a:transition-colors
+      prose-strong:text-neutral-900 dark:prose-strong:text-neutral-100 prose-strong:font-semibold
+      prose-code:text-brand-600 dark:prose-code:text-brand-400 prose-code:bg-neutral-100 dark:prose-code:bg-neutral-800 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none prose-code:text-[0.9em]
+      prose-pre:bg-neutral-900 dark:prose-pre:bg-neutral-950 prose-pre:rounded-lg prose-pre:shadow-lg
+      prose-ul:my-6 prose-ul:leading-[1.8] prose-ol:my-6 prose-ol:leading-[1.8]
+      prose-li:text-neutral-700 dark:prose-li:text-neutral-300 prose-li:my-2 prose-li:text-lg prose-li:leading-[1.8]
+      prose-table:border-collapse prose-table:w-full prose-table:my-8
+      prose-thead:border-b-2 prose-thead:border-neutral-300 dark:prose-thead:border-neutral-700
+      prose-th:text-left prose-th:p-3 prose-th:font-semibold prose-th:text-neutral-900 dark:prose-th:text-neutral-100 prose-th:bg-neutral-50 dark:prose-th:bg-neutral-800/50
+      prose-td:p-3 prose-td:border-b prose-td:border-neutral-200 dark:prose-td:border-neutral-800 prose-td:text-neutral-700 dark:prose-td:text-neutral-300
+      prose-img:rounded-lg prose-img:shadow-lg prose-img:my-8
+      prose-figcaption:text-center prose-figcaption:text-sm prose-figcaption:text-neutral-600 dark:prose-figcaption:text-neutral-400 prose-figcaption:mt-2 prose-figcaption:italic
+      prose-blockquote:border-l-4 prose-blockquote:border-brand-500 prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-neutral-600 dark:prose-blockquote:text-neutral-400"
     >
       <Content />
     </div>
