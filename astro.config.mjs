@@ -1,4 +1,5 @@
 // @ts-check
+// pipeline test 2026-06-12
 import { defineConfig } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
